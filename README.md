@@ -35,7 +35,7 @@ occs <- occ_search(scientificName = species,
 nrow(occs) #number of records 
 ```
 
-In the raw data, we have `r nrow(occs)` records. 
+In the raw data, we have 500 records. 
 
 Column names returned from gbif follow the DarwinCore standard (https://dwc.tdwg.org). 
 
