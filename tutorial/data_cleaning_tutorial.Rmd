@@ -39,7 +39,7 @@ library(maps)
 
 # 1. Getting the data
 
-First, let's download the data of a tree species from South America *Cariniana legalis* from the Lecythidaceae family.
+First, let's download the data of a tree species from South America *Cariniana legalis* (Kuntze) from the Lecythidaceae family.
 
 You can also embed plots, for example:
 
