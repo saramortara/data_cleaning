@@ -1,6 +1,6 @@
 ---
 title: "Basic workflow for biodiversity data cleaning using R"
-author: "Sara Mortara & Andrea Sanchez Tapia"
+author: "Sara Mortara & Andrea Sánchez-Tapia"
 date: "`r Sys.Date()`"
 output:
     html_document:
@@ -63,9 +63,9 @@ colnames(occs)
 In order to guarantee the documentation of all steps, saving the raw data is essential. We will create a directory to save data and then export the data as csv (text file separated by comma).  
 
 ```{r save-raw}
-dir.create("data")
+dir.create("../data")
 write.csv(occs, 
-          "data/raw_data.csv", 
+          "../data/raw_data.csv", 
           row.names = FALSE)
 ```
 
@@ -120,7 +120,7 @@ To guarantee the documentation of all steps, we will export the data after the t
 
 ```{r}
 write.csv(occs.new.tax, 
-          "data/data_taxonomy_check.csv", 
+          "../data/data_taxonomy_check.csv", 
           row.names = FALSE)
 ```
 
@@ -174,11 +174,20 @@ occs.new.geo <- clean_coordinates(x = occs.coord,
                                   value = "spatialvalid")
 ```
 
+
+```{r}
+# merging w/ original data
+occs.new.geo2 <- merge(occs, occs.new.geo, 
+                       all.x = TRUE, 
+                       by = "key") 
+```
+
+
 ## Exporting the data after coordinate check
 
 ```{r}
-write.csv(occs.new.geo, 
-          "data/data_coordinate_check.csv", 
+write.csv(occs.new.geo2, 
+          "../data/data_coordinate_check.csv", 
           row.names = FALSE)
 ```
 
