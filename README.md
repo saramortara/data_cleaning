@@ -1,4 +1,4 @@
-# "Basic workflow for biodiversity data cleaning using R"
+# Basic workflow for biodiversity data cleaning using R
 
 # 0. Loading packages
 
