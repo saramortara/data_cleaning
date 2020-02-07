@@ -17,9 +17,9 @@ knitr::opts_chunk$set(echo = TRUE,
 
 # 0. Loading packages
 
-For this excercise, we will use the R environment. If you need to download it go to: https://www.r-project.org/. It is **strongly** recomendable to use an editor and we recommend the R Studio (https://rstudio.com).
+For this exercise, we will use the R environment. If you need to download it go to: https://www.r-project.org/. It is **strongly** suggested to use an editor and we recommend RStudio (https://rstudio.com).
 
-For this tutorial, you will need to the R packages: `rgbif`, `Taxonstand` `CoordinateCleaner` and `maps`. If you don't have them installed use the following commands:
+For this tutorial, you will need to install the R packages: `rgbif`, `Taxonstand` `CoordinateCleaner` and `maps`. If you don't have them installed use the following commands:
 
 ```
 install.packages("rgbif")
@@ -52,7 +52,7 @@ nrow(occs) #number of records
 
 In the raw data, we have `r nrow(occs)` records. 
 
-Column names returned from gbif follows the DarwinCore standard (https://dwc.tdwg.org). 
+Column names returned from gbif follow the DarwinCore standard (https://dwc.tdwg.org). 
 
 ```{r col-names}
 colnames(occs)
@@ -60,7 +60,7 @@ colnames(occs)
 
 ## Exporting raw data
 
-In order to guarantee the documentation of all steps, saving the raw data is essencial. We will create a directory to save data and then export the data as csv (text file separated by comma).  
+In order to guarantee the documentation of all steps, saving the raw data is essential. We will create a directory to save data and then export the data as csv (text file separated by comma).  
 
 ```{r save-raw}
 dir.create("data")
@@ -83,9 +83,9 @@ In this particular case, we have two synonyms *Cariniana brasiliensis* and *Cour
 table(occs$taxonomicStatus)
 ```
 
-Let's use the function `TPL()` from package `taxonstand` to check if the taxonomic updates in the gbif data are correct. This function recieves a vector containing a list of species and performs both ortographical and nomenclature checking. Nomenclarure checking follows [The Plant List](http://www.theplantlist.org/). 
+Let's use the function `TPL()` from package `taxonstand` to check if the taxonomic updates in the gbif data are correct. This function receives a vector containing a list of species and performs both ortographical and nomenclature checking. Nomenclature checking follows [The Plant List](http://www.theplantlist.org/). 
 
-We will first generate a list with unique species names and combine it to the data. This is preferable because we do not need to check more than once the same name and in the case of working with several species will make the workflow faster. 
+We will first generate a list with unique species names and combine it to the data. This is preferable because we do not need to check more than once the same name and, in the case of working with several species, it will make the workflow faster. 
 
 ```{r taxonstand}
 species.names <- unique(occs$scientificName) 
@@ -98,9 +98,9 @@ Let's check the output:
 tax.check
 ```
 
-Note that the function adds several new information to the input data and creates columns such as `New.Genus` and `New.Species` with the accepted name. We should adopt these names if the column `New.Taxonomic.status` is filled with "Accepted"
+Note that the function adds several new variables to the input data and creates columns such as `New.Genus` and `New.Species` with the accepted name. We should adopt these names if the column `New.Taxonomic.status` is filled with "Accepted"
 
-We will merge the new genus and species and then add it to the original data. 
+We will merge the new genus and species and then add them to the original data. 
 
 ```{r merge}
 # creating new object w/ original and new names after TPL
@@ -133,9 +133,9 @@ plot(decimalLatitude ~ decimalLongitude, data = occs)
 map(, , , add = TRUE)
 ```
 
-Now we will use the the function `clean_coordinates()` from the `CoordinateCleaner` package to clean the species records. This function checks for common errors in coordinates such as intitutional coordinates, sea coordinates, outliers, zeros, centroids, etc. This function does not accept not available information (here addressed as "NA") so we will first select only data that have a numerical value for both latitude and longitude. 
+Now we will use the the function `clean_coordinates()` from the `CoordinateCleaner` package to clean the species records. This function checks for common errors in coordinates such as institutional coordinates, sea coordinates, outliers, zeros, centroids, etc. This function does not accept not available information (here addressed as "NA") so we will first select only data that have a numerical value for both latitude and longitude. 
 
-Note: at this moment having a specific ID code for each observation is essencial. The raw data already provides an ID in the column `gbifID`. 
+Note: at this moment having a specific ID code for each observation is essential. The raw data already provides an ID in the column `gbifID`. 
 
 ```{r coord-prep}
 occs.coord <- occs[!is.na(occs$decimalLatitude) 
@@ -153,7 +153,7 @@ geo.clean <- clean_coordinates(x = occs.coord,
                                value = "clean")
 ```
 
-Let's plot the output of the cleaned data. 
+Let's plot the output of the clean data. 
 
 ```{r map-plot}
 par(mfrow = c(1, 2))
@@ -164,7 +164,7 @@ map(, , , add = TRUE)
 par(mfrow = c(1, 1))
 ```
 
-When setting `value = clean` it returns only the potencially correct coordinates. For checking and reproducibility we want to save all the output with the flags generated by the routine. Let's try a different output. 
+When setting `value = clean` it returns only the potentially correct coordinates. For checking and reproducibility we want to save all the output with the flags generated by the routine. Let's try a different output. 
 
 ```{r coord-clean-2}
 occs.new.geo <- clean_coordinates(x = occs.coord, 
