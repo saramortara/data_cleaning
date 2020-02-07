@@ -1,19 +1,4 @@
----
-title: "Basic workflow for biodiversity data cleaning using R"
-author: "Sara Mortara & Andrea Sanchez Tapia"
-date: "`r Sys.Date()`"
-output:
-    html_document:
-        theme: cosmo
-        toc: yes
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, 
-                      message = FALSE, 
-                      warning = FALSE, 
-                      cache = TRUE)
-```
+# "Basic workflow for biodiversity data cleaning using R"
 
 # 0. Loading packages
 
