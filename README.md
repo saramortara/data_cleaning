@@ -158,12 +158,22 @@ occs.new.geo <- clean_coordinates(x = occs.coord,
                                   species = "species", 
                                   value = "spatialvalid")
 ```
+Then, we merge the raw data with the cleaned data.
+
+```{r}
+# merging w/ original data
+occs.new.geo2 <- merge(occs, occs.new.geo, 
+                       all.x = TRUE, 
+                       by = "key") 
+```
+
 
 ## Exporting the data after coordinate check
 
 ```{r}
-write.csv(occs.new.geo, 
-          "data/data_coordinate_check.csv", 
+write.csv(occs.new.geo2, 
+          "../data/data_coordinate_check.csv", 
           row.names = FALSE)
 ```
 
+Here is just of a quick example of a workflow of data cleaning using available tools in R.  
